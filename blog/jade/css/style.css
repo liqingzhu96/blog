@@ -1,7 +1,177 @@
-.content {
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.Bcontent {
+  width: 100%;
+  background: #996633;
+  padding-bottom: 1px;
+}
+.Bcontent .header {
+  width: 100%;
+  height: 300px;
+  background: #99CC66;
+}
+.Bcontent .content {
   width: 1200px;
-  height: 800px;
-  background: yellow;
+  margin: 0 auto;
+}
+.Bcontent .content .left {
+  float: left;
+  width: 300px;
+}
+.Bcontent .content .left .gongneng {
+  margin-bottom: 10px;
+  height: 300px;
+  background: white;
+}
+.Bcontent .content .left .wenzhang {
+  padding-top: 1px;
+  height: 670px;
+  background: white;
+}
+.Bcontent .content .right {
+  margin-left: 300px;
+  width: 900px;
+}
+.Bcontent .content .right .content {
+  background: white;
+  width: 880px;
+  margin: 10px;
+  height: 1000px;
+}
+
+.gongneng_box {
+  cursor: pointer;
+  float: left;
+  overflow: hidden;
+  height: 150px;
+  width: 150px;
+}
+.gongneng_box i {
+  display: block;
+  margin: 30px;
+  height: 90px;
+  width: 90px;
+  background-size: contain;
+}
+
+.i1 {
+  background: url(../image/bowen.png) no-repeat;
+}
+.i2 {
+  background: url(../image/xinqing.png) 7px 0 no-repeat;
+}
+.i3 {
+  background: url(../image/shangweikaifang.png) 8px 0 no-repeat;
+}
+.i4 {
+  background: url(../image/shangweikaifang.png) 8px 0 no-repeat;
+}
+.i5 {
+  font-size: 90px;
+  left: 150px;
+  top: -30px;
+  position: absolute;
+  z-index: 100;
+}
+.i6 {
+  font-size: 90px;
+  top: 120px;
+  position: absolute;
+  z-index: 100;
+}
+
+.color1 {
+  background-color: #FF9900;
+}
+.color2 {
+  background-color: #FFFF00;
+}
+.color3 {
+  background-color: #FF0033;
+}
+.color4 {
+  background-color: #FF6666;
+}
+
+.box1 {
+  position: relative;
+  left: -150px;
+  height: 150px;
+  width: 300px;
+  transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  /* Firefox 4 */
+  -webkit-transition: all 0.3s;
+  /* Safari 和 Chrome */
+  -o-transition: all 0.3s;
+  /* Opera */
+}
+.box1:hover {
+  left: 0;
+}
+.box2 {
+  position: relative;
+  top: -150px;
+  height: 300px;
+  width: 150px;
+  transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  /* Firefox 4 */
+  -webkit-transition: all 0.3s;
+  /* Safari 和 Chrome */
+  -o-transition: all 0.3s;
+  /* Opera */
+}
+.box2:hover {
+  top: 0;
+}
+.box3 {
+  position: relative;
+  left: -150px;
+  height: 150px;
+  width: 300px;
+  transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  /* Firefox 4 */
+  -webkit-transition: all 0.3s;
+  /* Safari 和 Chrome */
+  -o-transition: all 0.3s;
+  /* Opera */
+}
+.box3:hover {
+  left: 0;
+}
+.box4 {
+  position: relative;
+  top: -150px;
+  height: 300px;
+  width: 150px;
+  transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  /* Firefox 4 */
+  -webkit-transition: all 0.3s;
+  /* Safari 和 Chrome */
+  -o-transition: all 0.3s;
+  /* Opera */
+}
+.box4:hover {
+  top: 0;
+}
+
+.wenzhang_box {
+  margin: 10px;
+  height: 100px;
+  width: 280px;
+  background: #edf1f2;
+  box-shadow: 0 0 5px #CCCCCC;
+  cursor: pointer;
+}
+.wenzhang_box:hover {
+  background: #CCCC99;
 }
 
 /*# sourceMappingURL=style.css.map */

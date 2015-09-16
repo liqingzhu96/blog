@@ -1,6 +1,168 @@
-.content
-{
-	width:1200px;
-	height:800px;
-	background:yellow;
+$gree:rgb(237,241,242);
+@mixin border-shadow{
+	background: rgb(237,241,242);
+	box-shadow:0 0 5px #CCCCCC;
 }
+@mixin animate($time){
+	transition:all $time;
+	-moz-transition: all $time; /* Firefox 4 */
+	-webkit-transition: all $time; /* Safari 和 Chrome */
+	-o-transition: all $time; /* Opera */
+}
+*{
+	margin:0;
+	padding:0;
+}
+.Bcontent
+{
+	width:100%;
+	background:#996633;
+	padding-bottom: 1px;
+	.header
+	{
+		width: 100%;
+		height: 300px;
+		background: #99CC66;
+	}
+	.content
+	{
+		width: 1200px;
+		margin: 0 auto;
+
+		.left{
+			float: left;
+			width: 300px;
+			.gongneng{
+				margin-bottom: 10px;
+				height: 300px;
+				background: white;
+			}
+			.wenzhang{
+				padding-top: 1px;
+				height: 670px;
+				background: white;
+			}
+		}
+		.right{
+			margin-left: 300px;
+			width: 900px;
+
+			.content{
+				background: white;
+				width: 880px;
+				margin: 10px;
+				height: 1000px;
+			}
+		}
+	}
+}
+.gongneng_box{
+	cursor: pointer;
+	float: left;
+	overflow: hidden;
+	height: 150px;
+	width: 150px;
+	i{
+		display: block;
+		margin: 30px;
+		height: 90px;
+		width: 90px;
+		background-size: contain;
+	}
+}
+.i{
+	&1{
+		background: url(../image/bowen.png) no-repeat;
+	}
+	&2{
+		background: url(../image/xinqing.png) 7px 0 no-repeat;
+	}
+	&3{
+		background: url(../image/shangweikaifang.png) 8px 0 no-repeat;
+	}
+	&4{
+		background: url(../image/shangweikaifang.png) 8px 0 no-repeat;
+	}
+	&5{
+		font-size: 90px;
+		left: 150px;
+		top: -30px;
+		position: absolute;
+		z-index: 100;
+	}
+	&6{
+		font-size: 90px;
+		top: 120px;
+		position: absolute;
+		z-index: 100;
+	}
+}
+.color{
+	&1{
+		background-color:#FF9900; 
+	}
+	&2{
+		background-color:#FFFF00; 
+	}
+	&3{
+		background-color:#FF0033;
+	}
+	&4{
+		background-color:#FF6666; 
+	}
+}
+.box{
+	&1{
+		position: relative;
+		left: -150px;
+		height: 150px;
+		width: 300px;
+		@include animate(0.3s);	
+		&:hover{
+			left: 0;
+		}
+	}
+	&2{
+		position: relative;
+		top: -150px;
+		height: 300px;
+		width: 150px;
+		@include animate(0.3s);	
+		&:hover{
+			top: 0;
+		}
+	}
+	&3{
+		position: relative;
+		left: -150px;
+		height: 150px;
+		width: 300px; 
+		@include animate(0.3s);	
+		&:hover{
+			left: 0;
+		}
+	}
+	&4{
+		position: relative;
+		top: -150px;
+		height: 300px;
+		width: 150px;
+		@include animate(0.3s);	
+		&:hover{
+			top: 0;
+		}
+	}
+}
+.wenzhang_box{
+	margin:10px;	
+	height: 100px;
+	width: 280px;
+	@include border-shadow;
+	cursor: pointer;
+	&:hover{
+		background:#CCCC99;
+	}
+}
+
+
+
