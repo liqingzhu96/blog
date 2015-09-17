@@ -1,13 +1,26 @@
 $gree:rgb(237,241,242);
 @mixin border-shadow{
-	background: rgb(237,241,242);
+	background: $gree;
 	box-shadow:0 0 5px #CCCCCC;
+	font-family: "微软雅黑";
 }
 @mixin animate($time){
 	transition:all $time;
 	-moz-transition: all $time; /* Firefox 4 */
 	-webkit-transition: all $time; /* Safari 和 Chrome */
 	-o-transition: all $time; /* Opera */
+}
+@mixin box{
+	display: box;
+	display: -o-box;
+	display: -webkit-box;
+	display: -moz-box;
+}
+@mixin flex($a){
+	-o-box-flex:$a;
+	-moz-box-flex:$a;
+    -webkit-box-flex:$a;
+    box-flex:&a;
 }
 *{
 	margin:0;
@@ -16,19 +29,20 @@ $gree:rgb(237,241,242);
 .Bcontent
 {
 	width:100%;
-	background:#996633;
+	background-image:url(../image/top_bg2.jpg); 
 	padding-bottom: 1px;
 	.header
 	{
 		width: 100%;
 		height: 300px;
-		background: #99CC66;
+/*		background-image:url(../image/top_bg.jpg); 
+		background-size:contain; */
 	}
 	.content
 	{
 		width: 1200px;
 		margin: 0 auto;
-
+		
 		.left{
 			float: left;
 			width: 300px;
@@ -48,7 +62,8 @@ $gree:rgb(237,241,242);
 			width: 900px;
 
 			.content{
-				background: white;
+				background-color:white; 
+				background-image:url(../image/bg.jpg);
 				width: 880px;
 				margin: 10px;
 				height: 1000px;
@@ -153,16 +168,64 @@ $gree:rgb(237,241,242);
 		}
 	}
 }
-.wenzhang_box{
-	margin:10px;	
-	height: 100px;
-	width: 280px;
-	@include border-shadow;
-	cursor: pointer;
-	&:hover{
-		background:#CCCC99;
+.wenzhang_{
+	&box{
+		overflow: hidden;
+		position: relative;
+		margin:10px;	
+		height: 100px;
+		width: 280px;
+		@include border-shadow;
+		cursor: pointer;
+		&:hover{
+			background:#66CCCC;
+			color: white;
+			.wenzhang_content{
+				border-left: 1px dotted white;
+			}
+			.wenzhang_time{
+				border-bottom: 1px dotted white;
+			}
+		}
+	}
+	&box_in{
+		position: relative;
+		left: -240px;
+		@include box;
+		height: 100%;
+		width: 520px;
+	}
+	&time{
+		text-indent: 5px;
+		position: relative;
+		width: 100%;
+		height: 30px;
+		border-bottom: 1px dotted black;
+		span{
+			font-size: 20px;
+			font-family: "Trebuchet MS";
+		}
+	}
+	&type{
+		@include flex(4);
+		background:#66CCCC; 
+		color: red;
+	}
+	&content{
+		width: 220px;
+		overflow: hidden;
+	}
+	&title{
+		width: 230px;
+		position: relative;
+		top: 25px;
+		left: 5px;
+		white-space:nowrap;
+		overflow: hidden;
+		text-overflow:ellipsis;
 	}
 }
+
 
 
 
