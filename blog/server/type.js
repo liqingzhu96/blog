@@ -1,4 +1,8 @@
 module.exports={
+'eot':'application/octet-stream',
+'ttf':'application/octet-stream',
+'woff':'application/x-font-woff',
+'svg':'image/svg+xml',
 'hqx':'application/mac-binhex40',
 'cpt':'application/mac-compactpro',
 'csv':['text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream', 'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv', 'application/excel', 'application/vnd.msexcel'],
