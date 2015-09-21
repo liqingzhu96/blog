@@ -1,0 +1,58 @@
+doctype html
+html
+	head
+		title blog
+		meta(charset="UTF-8")
+		link(rel="stylesheet" type="text/css" href="css/style.css")
+		link(rel="stylesheet" type="text/css" href="css/font.css")
+		script(type="text/javascript" src="js/jquery.js")
+		script(type="text/javascript" src="js/animate.js")
+	body
+		.Bcontent
+			.header
+			.content
+				.left
+					.gongneng
+						.gongneng_box.color1
+							a.a_box(href="/index")
+								.box1
+									i.i1
+									i.i5.icon-bowen
+						.gongneng_box.color2
+							.box2
+								i.i2
+								i.i6.icon-xinqing
+						.gongneng_box.color3
+							.box3
+								i.i3
+								i.i5.icon-shangweikaifang
+						.gongneng_box.color4
+							.box4
+								i.i4
+								i.i6.icon-shangweikaifang
+					.wenzhang
+						-for(var a=0;a<6;a++){
+						.wenzhang_box
+							.wenzhang_box_in
+								.wenzhang_type
+									a(href="#")
+								.wenzhang_content
+									a(href="/blog?_id=#{DATA[a]['_id']}")
+										.wenzhang_time 
+											span #{DATA[a]['time']}
+										.wenzhang_title #{DATA[a]['title']}
+						-}
+				.right
+					.content
+						.content_top
+						.content_bottom
+							h1.title #{data.title}
+							.title_bottom
+								a(href="#")
+									i.type #{data.type}
+								i.giveMeAFuckingName /
+								i.time #{data.time}
+							p.zhengwen #{data.content} 
+
+								
+
