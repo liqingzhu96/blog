@@ -36,10 +36,10 @@ html
 								.wenzhang_type
 									a.a_box(href="#")
 								.wenzhang_content
-									a.a_box(href="/blog?_id=#{data[a]['_id']}")
+									a.a_box(href="/blog?_id=#{DATA[a]['_id']}")
 										.wenzhang_time 
-											span #{data[a]['time']}
-										.wenzhang_title #{data[a]['title']}
+											span #{DATA[a]['time']}
+										.wenzhang_title #{DATA[a]['title']}
 						-}
 				.right
 					.content
@@ -54,6 +54,34 @@ html
 									a(href="/blog?_id=#{data[i]['_id']}") #{data[i]['title']}
 								i.p_time #{data[i]['time']}
 							-}
-
-								
-
+						.page
+							li
+								a(href="/index?page=1") 首页
+							-if(page-3>0){
+							li
+								a(href="/index?page=#{page-3}") #{page-3}	
+							-}
+							-if(page-2>0){
+							li
+								a(href="/index?page=#{page-2}") #{page-2}	
+							-}
+							-if(page-1>0){
+							li
+								a(href="/index?page=#{page-1}") #{page-1}	
+							-}
+							li
+								a.on #{page}
+							-if(page<count){
+							li
+								a(href="/index?page=#{parseInt(page)+1}") #{parseInt(page)+1}	
+							-}
+							-if(page+1<count){
+							li
+								a(href="/index?page=#{parseInt(page)+2}") #{parseInt(page)+2}	
+							-}
+							-if(page+2<count){
+							li
+								a(href="/index?page=#{parseInt(page)+3}") #{parseInt(page)+3}	
+							-}
+							li
+								a(href="/index?page=#{count}") 末页

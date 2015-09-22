@@ -1,0 +1,69 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0; }
+
+html, body {
+  height: 100%;
+  width: 100%; }
+
+.wrap {
+  display: absolute;
+  height: 100%;
+  width: 100%;
+  background: url(../image/top_bg2.jpg); }
+
+.login {
+  position: absolute;
+  height: 40%;
+  width: 40%;
+  background: white;
+  left: 30%;
+  top: 30%; }
+  .login_p {
+    font-size: 20px;
+    text-align: center;
+    font-family: "微软雅黑";
+    display: block;
+    width: 100%;
+    height: 15%;
+    border-bottom: 1px inset #CCCC99; }
+  .login_content {
+    height: 85%;
+    position: relative;
+    top: 14%;
+    text-align: center; }
+    .login_content i {
+      font-style: normal;
+      font-family: "微软雅黑"; }
+
+.text, .password {
+  left: -5%;
+  position: relative;
+  height: 20%; }
+  .text input, .password input {
+    text-indent: 5%;
+    width: 45%;
+    height: 80%;
+    border: 1px solid #CC9999;
+    box-shadow: 0 0 5px #CC9999; }
+    .text input:hover, .password input:hover {
+      box-shadow: 0 0 5px #3399CC; }
+
+.password {
+  top: 5%; }
+
+.submit {
+  position: relative;
+  top: 10%;
+  height: 20%; }
+  .submit input {
+    background-color: #CCFFFF;
+    cursor: pointer;
+    width: 40%;
+    height: 90%;
+    font-family: "微软雅黑";
+    font-size: 18px;
+    color: #666699; }
+
+/*# sourceMappingURL=admin.css.map */
