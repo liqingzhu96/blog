@@ -9,11 +9,12 @@ html
 			.login
 				p.login_p 登陆
 				.login_content
-					.text
-						i 用户名：
-						input(type="text")
-					.password
-						i &nbsp;&nbsp;&nbsp;&nbsp;密码：
-						input(type="password")
-					.submit
-						input(type="submit")
+					form(method="post" action="/login")
+						.text
+							i 用户名：
+							input(type="text" name="username")
+						.password
+							i &nbsp;&nbsp;&nbsp;&nbsp;密码：
+							input(type="password" name="password")
+						.submit
+							input(type="submit")

@@ -1,5 +1,7 @@
 var jade=require('jade');
 var url=require('url');
+var querystring=require('querystring');
+var getCookie=require('./getCookie');
 /*打开数据库*/
 var mongoose=require('mongoose');
 var db=mongoose.createConnection('mongodb://127.0.0.1:27017/blog');
@@ -12,7 +14,14 @@ var articlesSchema=new mongoose.Schema({
 	"content":String,
 	"time":String
 });
+var loginsSchema=new mongoose.Schema({
+	"username":String,
+	"password":String,
+	"time":String
+});
 var articlesModel=db.model('articles',articlesSchema);
+var loginsModel=db.model('login',loginsSchema);
+console.log("数据调用1次！");
 /*数据库打开结束*/
 
 /*缓存*/
@@ -25,6 +34,8 @@ articlesModel.find({},"_id title type time content", {sort: {'_id':-1},limit:6},
 			}
 		});
 /*end*/
+
+/*博客全览*/
 function index(req,res){
 var page=url.parse(req.url,true).query['page']||1;
 articlesModel.count(function(err,count){
@@ -50,6 +61,7 @@ articlesModel.count(function(err,count){
 	});
 
 }
+/*博客文章*/ 
 function blog(req,res){
 	var id=url.parse(req.url,true).query['_id'];
 		articlesModel.findOne({_id:id},"_id title type time content",function(err,data){
@@ -67,5 +79,40 @@ function blog(req,res){
 			}
 		});
 }
+/*登陆*/
+
+function admin(req,res){
+	var html=jade.renderFile('../jade/admin.jade');
+	res.write(html);
+	res.end();
+}
+
+function login(req,res){
+	var post="";
+	req.on('data',function(data){
+		post+=data;
+	});
+	req.on('end',function(){
+		post=querystring.parse(post);
+		loginsModel.find(post,"-_id username password time",function(err,data){
+			if(err){
+				console.log('loginsModel find ERROR:'+err);
+			}
+			if(data.length==0){
+				console.log("登陆失败！");
+				admin(req,res)
+			}
+			else{
+				console.log("登陆成功！");
+				res.setHeader('Set-Cookie',"username=liqingzhu;Max-Age=3600");
+				index(req,res);
+			}
+		})
+	});
+
+}
+
 exports.index=index;
 exports.blog=blog;
+exports.admin=admin;
+exports.login=login;

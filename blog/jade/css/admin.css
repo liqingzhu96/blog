@@ -36,6 +36,9 @@ html, body {
     .login_content i {
       font-style: normal;
       font-family: "微软雅黑"; }
+    .login_content form {
+      height: 100%;
+      width: 100%; }
 
 .text, .password {
   left: -5%;
