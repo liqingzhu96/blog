@@ -1,0 +1,19 @@
+doctype html
+html.all
+	head
+		title 新增文章
+		meta(charset="utf-8")
+		link(rel="stylesheet" type="text/css" href="css/style.css")
+	body.all
+		.fabiao_content
+			.fabiao_bg
+				.fabiao_wenzhang
+					form(method="post" action="/add")
+						input.send.send3(type="submit" value="确认发表")
+						h1.wenzhang_title 新增博客
+						select(name="type").fabiao_type
+							option(value="学习日志") 学习日志
+							option(value="心情日志") 心情日志
+							option(value="杂文") 杂文
+						input(type="text" name="title").fabiao_title
+						textarea(name="content").fabiao_text 

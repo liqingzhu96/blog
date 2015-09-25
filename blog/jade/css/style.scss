@@ -1,4 +1,16 @@
 $gree:rgb(237,241,242);
+@mixin font-border($a){
+	font-style: normal;
+	font-family: "微软雅黑";
+	font-size: $a+px;
+	text-align: center;
+	line-height:1.5*$a+px; 
+	display: block;
+	color: #CC3333;
+	height: 1.5*$a+px;
+	width: 5*$a+px;
+	border: 1px solid #993333;
+}
 @mixin border-shadow{
 	background: $gree;
 	box-shadow:0 0 5px #CCCCCC;
@@ -29,11 +41,18 @@ $gree:rgb(237,241,242);
 a{
 	text-decoration: none;
 }
+textarea{
+	resize: none;
+}
+form{
+	height: 100%;
+	width: 100%;
+}
 .Bcontent
 {
 	width:100%;
 	background-image:url(../image/top_bg2.jpg); 
-	height:1400px;
+	min-height: 1400px;
 	.header
 	{
 		width: 100%;
@@ -43,9 +62,10 @@ a{
 	}
 	.content
 	{
+		padding-bottom:20px;
+		min-height: 980px;
 		width: 1200px;
 		margin: 0 auto;
-		
 		.left{
 			float: left;
 			width: 300px;
@@ -68,7 +88,7 @@ a{
 				background-image:url(../image/bg.jpg);
 				width: 880px;
 				margin: 10px;
-				padding-bottom:30px; 
+				padding-bottom:20px;
 			}
 		}
 	}
@@ -231,6 +251,7 @@ a{
 	&top{
 		width: 100%;
 		height: 60px;
+		position: relative;
 	}
 	&bottom{
 		width: 800px;
@@ -264,7 +285,6 @@ a{
 	}
 }
 .zhengwen{
-	text-indent: 44px;
 	letter-spacing:3px;
 	margin-top: 10px;
 	font-family: "微软雅黑";
@@ -288,7 +308,7 @@ a{
 	border-bottom: 1px dotted #993333;
 	.p_text{
 		display: inline-block;
-		width: 600px;
+		width: 500px;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow:ellipsis;
@@ -307,6 +327,10 @@ a{
 		border: 1px inset #CC3333;
 	}
 	.p_time{
+		overflow:hidden;
+		white-space:nowrap;
+		text-overflow:ellipsis;
+		width:180px;
 		position: relative;
 		top: 3px;
 		float: right;
@@ -360,7 +384,119 @@ a{
 		}
 	}
 }
+/* 修改文章 */
+.send{
+	position: absolute;
+	@include font-border(17);
+	border-radius: 10px;
+	background: #FFFFCC;
+	box-shadow:0 0 5px #CCCCCC;
+	&:hover{
+		@include font-border(19);
+	}
+}
+.send1{
+	top: 20px;
+	right: 160px;
+	&:hover{
+		top: 19px;
+		right: 156px;
+	}
+}
+.send2{
+	top: 20px;
+	right: 50px;
+	&:hover{
+		top: 19px;
+		right: 46px;
+	}
+}
+.send4{
+	top: 20px;
+	left: 50px;
+	&:hover{
+		top: 19px;
+		left: 46px;
+	}
+}
+/*  */
 /*end*/
+/* fabiao.jade */
+.all{
+	height: 100%;
+	width: 100%;
+}
+.fabiao_content{
+	width:100%;
+	height: 100%;
+	background-image:url(../image/top_bg2.jpg); 
+	background-size: contain;
+}
+.fabiao_bg{
+	height: 100%;
+	width: 60%;
+	margin: 0 auto;
+	background:#999999;
+}
+.fabiao_wenzhang{
+	position: relative;
+	top: 3%;
+	height: 94%;
+	width: 94%;
+	margin:0 auto;
+	border-radius: 20px;
+	background: white;
+	h1{
+		top: 2px;
+		font-family: "微软雅黑";
+		font-weight: normal;
+		margin:0 auto;
+	}
+}
+.fabiao_type{
+	display: block;
+	position: relative;
+	left: 10%;
+	height:5%;
+	width:20%;
+	font-family: "微软雅黑";
+	border: 1px solid #CCCC99;
+	box-shadow: 0 0 2px #999966;
+}
+.fabiao_title{
+	position: relative;
+	display: block;
+	left: 10%;
+	top: 2%;
+	height:6%;
+	width: 80%; 
+	font-family: "微软雅黑";
+	text-indent: 4px;
+	border: 1px solid #CCCC99;
+	box-shadow: 0 0 2px #999966;
+}
+.fabiao_text{
+	display: block;
+	position: relative;
+	height: 70%;
+	width: 80%;
+	top: 4%;
+	left: 10%;
+	border: 1px solid #CCCC99;
+	font-family: "微软雅黑";
+	padding-top: 2px;
+	padding-left: 2px;
+	box-shadow: 0 0 2px #999966;
+}
+.send3{
+	top: 10px;
+	right: 70px;
+	cursor: pointer;
+	&:hover{
+		top: 9px;
+		right: 66px;
+	}
+}
 
 
 

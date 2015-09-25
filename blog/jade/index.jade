@@ -30,7 +30,7 @@ html
 								i.i4
 								i.i6.icon-shangweikaifang
 					.wenzhang
-						-for(var a=0;a<6;a++){
+						-for(var a=0;a<DATA.length;a++){
 						.wenzhang_box
 							.wenzhang_box_in
 								.wenzhang_type
@@ -45,6 +45,7 @@ html
 					.content
 						.content_top
 							h1.p_top 博文全览
+							a.send.send2(href="/fabiao?m=2") 新增文章
 						.content_bottom
 							-for (var i=0;i<data.length;i++){
 							.p_title

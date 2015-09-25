@@ -1,0 +1,20 @@
+doctype html
+html.all
+	head
+		title 修改文章
+		meta(charset="utf-8")
+		link(rel="stylesheet" type="text/css" href="css/style.css")
+	body.all
+		.fabiao_content
+			.fabiao_bg
+				.fabiao_wenzhang
+					form(method="post" action="/update?_id=#{data._id}")
+						input.send.send3(type="submit" value="确认修改")
+						h1.wenzhang_title 修改博客
+						select(name="type").fabiao_type
+							option(value="学习日志") 学习日志
+							option(value="心情日志") 心情日志
+							option(value="杂文") 杂文
+						input(type="text" name="title" value="#{data.title}").fabiao_title
+						-	var content=data.content.replace(/<br>/g,'\r\n');
+						textarea(name="content").fabiao_text #{content} 

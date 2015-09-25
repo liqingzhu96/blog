@@ -31,7 +31,7 @@ html
 								i.i4
 								i.i6.icon-shangweikaifang
 					.wenzhang
-						-for(var a=0;a<6;a++){
+						-for(var a=0;a<DATA.length;a++){
 						.wenzhang_box
 							.wenzhang_box_in
 								.wenzhang_type
@@ -45,6 +45,9 @@ html
 				.right
 					.content
 						.content_top
+							a.send.send4(href="/remove?_id=#{data['_id']}") 删除文章
+							a.send.send1(href="/xiugai?_id=#{data['_id']}") 修改文章
+							a.send.send2(href="/fabiao?m=2") 新增文章
 						.content_bottom
 							h1.title #{data.title}
 							.title_bottom
@@ -52,7 +55,7 @@ html
 									i.type #{data.type}
 								i.giveMeAFuckingName /
 								i.time #{data.time}
-							p.zhengwen #{data.content} 
+							p.zhengwen !{data.content} 
 
 								
 
