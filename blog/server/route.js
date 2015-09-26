@@ -1,6 +1,5 @@
 var action=require('./action');
 var openFile=require('./openFile');
-var type=require('./type');
 function route(pathname,req,res){
 	var path=pathname.match(/\/(\w+)\//);
 	if(path&&(path[1]=="css"||path[1]=="js"||path[1]=="image"||path[1]=="fonts")){

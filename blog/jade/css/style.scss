@@ -57,8 +57,8 @@ form{
 	{
 		width: 100%;
 		height: 300px;
-/*		background-image:url(../image/top_bg.jpg); 
-		background-size:contain; */
+		background-image:url(../image/banner.jpg); 
+		background-size:100% 100%; 
 	}
 	.content
 	{
@@ -409,6 +409,14 @@ form{
 	&:hover{
 		top: 19px;
 		right: 46px;
+	}
+}
+.unlogin{
+	top: 20px;
+	left: 50px;
+	&:hover{
+		top: 19px;
+		left: 46px;
 	}
 }
 .send4{

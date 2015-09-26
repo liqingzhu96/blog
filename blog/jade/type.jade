@@ -1,7 +1,7 @@
 doctype html
 html
 	head
-		title 博文全览
+		title 首页
 		meta(charset="UTF-8")
 		link(rel="stylesheet" type="text/css" href="css/style.css")
 		link(rel="stylesheet" type="text/css" href="css/font.css")
@@ -14,9 +14,10 @@ html
 				.left
 					.gongneng
 						.gongneng_box.color1
-							.box1
-								i.i1
-								i.i5.icon-bowen
+							a.a_box(href="/index")
+								.box1
+									i.i1
+									i.i5.icon-bowen
 						.gongneng_box.color2
 							.box2
 								i.i2
@@ -34,7 +35,7 @@ html
 						.wenzhang_box
 							.wenzhang_box_in
 								.wenzhang_type
-									a.a_box(href="/type?type=#{data.type}")
+									a.a_box(href="#")
 								.wenzhang_content
 									a.a_box(href="/blog?_id=#{DATA[a]['_id']}")
 										.wenzhang_time 
@@ -44,17 +45,14 @@ html
 				.right
 					.content
 						.content_top
-							h1.p_top 博文全览
-							-if(cookie){
-							a.send.unlogin(href="/unlogin") 退出登录
-							-}
+							h1.p_top #{type}
 							-if(cookie){
 							a.send.send2(href="/fabiao?m=2") 新增文章
 							-}
 						.content_bottom
 							-for (var i=0;i<data.length;i++){
 							.p_title
-								a(href="/type?type=#{data[i].type}")
+								a(href="#")
 									i.p_type #{data[i]['type']}
 								.p_text
 									a(href="/blog?_id=#{data[i]['_id']}") #{data[i]['title']}
@@ -62,32 +60,32 @@ html
 							-}
 						.page
 							li
-								a(href="/index?page=1") 首页
+								a(href="/type?type=#{type}&page=1") 首页
 							-if(page-3>0){
 							li
-								a(href="/index?page=#{page-3}") #{page-3}	
+								a(href="/type?type=#{type}&page=#{page-3}") #{page-3}	
 							-}
 							-if(page-2>0){
 							li
-								a(href="/index?page=#{page-2}") #{page-2}	
+								a(href="/type?type=#{type}&page=#{page-2}") #{page-2}	
 							-}
 							-if(page-1>0){
 							li
-								a(href="/index?page=#{page-1}") #{page-1}	
+								a(href="/type?type=#{type}&page=#{page-1}") #{page-1}	
 							-}
 							li
 								a.on #{page}
 							-if(page<count){
 							li
-								a(href="/index?page=#{parseInt(page)+1}") #{parseInt(page)+1}	
+								a(href="/type?type=#{type}&page=#{parseInt(page)+1}") #{parseInt(page)+1}	
 							-}
 							-if(page+1<count){
 							li
-								a(href="/index?page=#{parseInt(page)+2}") #{parseInt(page)+2}	
+								a(href="/type?type=#{type}&page=#{parseInt(page)+2}") #{parseInt(page)+2}	
 							-}
 							-if(page+2<count){
 							li
-								a(href="/index?page=#{parseInt(page)+3}") #{parseInt(page)+3}	
+								a(href="/type?type=#{type}&page=#{parseInt(page)+3}") #{parseInt(page)+3}	
 							-}
 							li
-								a(href="/index?page=#{count}") 末页
+								a(href="/type?type=#{type}&page=#{count}") 末页

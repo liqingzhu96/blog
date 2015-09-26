@@ -25,8 +25,8 @@ form {
 .Bcontent .header {
   width: 100%;
   height: 300px;
-  /*		background-image:url(../image/top_bg.jpg); 
-  		background-size:contain; */
+  background-image: url(../image/banner.jpg);
+  background-size: 100% 100%;
 }
 .Bcontent .content {
   padding-bottom: 20px;
@@ -430,6 +430,15 @@ form {
 .send2:hover {
   top: 19px;
   right: 46px;
+}
+
+.unlogin {
+  top: 20px;
+  left: 50px;
+}
+.unlogin:hover {
+  top: 19px;
+  left: 46px;
 }
 
 .send4 {
