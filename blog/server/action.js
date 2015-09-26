@@ -177,8 +177,9 @@ function add(req,res){
 	});
 	req.on('end',function(){
 		post=querystring.parse(post);
-		post['time']=new Date().toLocaleString();
-		post['date']=new Date().getTime();
+		var d = new Date();
+		post['time']=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+		post['date']=d.getTime();
 		post['content']=post['content'].replace(/\r\n/g,'<br>');
 		var fabiao=new articlesModel(post);
 		fabiao.save(function(err){
@@ -207,8 +208,9 @@ function update(req,res){
 	});
 	req.on('end',function(){
 		post=querystring.parse(post);
-		post['time']=new Date().toLocaleString();
-		post['date']=new Date().getTime();
+		var d = new Date();
+		post['time']=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+		post['date']=d.getTime();
 		post['content']=post['content'].replace(/\r\n/g,'<br>');
 		var update={$set:post};
 		articlesModel.update({'_id':_id},update,function(err){
