@@ -180,7 +180,7 @@ function add(req,res){
 		var d = new Date();
 		post['time']=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
 		post['date']=d.getTime();
-		post['content']=post['content'].replace(/\r\n/g,'<br>');
+		post['content']=post['content'].replace(/\r\n/g,'<br>').replace(/ /g,'&nbsp;');
 		var fabiao=new articlesModel(post);
 		fabiao.save(function(err){
 			if(err){
