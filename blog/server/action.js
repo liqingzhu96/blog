@@ -1,4 +1,3 @@
-var jade=require('jade');
 var message=require('./message');
 var $get=message.$get;
 var url=require('url');
@@ -36,7 +35,7 @@ console.log("数据调用1次！");
 /*缓存*/
 var DATA;
 function huancun(){
-	articlesModel.find({},"_id title type time content", {sort: {'date':-1},limit:6},function(err,data){
+	articlesModel.find({},"_id title type time", {sort: {'date':-1},limit:6},function(err,data){
 		if(err){
 			console.log("缓存ERROR:"+err);
 		}else{
@@ -55,20 +54,22 @@ function index(req,res){
 	}
 	var page=$get(req)['page']||1;
 articlesModel.count(function(err,count){
-	if(err){console.log('数量查询出错！')}
+	if(err){
+		console.log('数量查询出错！')
+		res.write('false');
+		res.end();}
 	var articlesCount=parseInt(count/10)+1; 
 	articlesCount<page?page=articlesCount:page=page;
 	console.log("articlesCount:"+articlesCount);
-	articlesModel.find({},"_id title type time content", {sort: {'date':-1},limit:page*10,skip:(page-1)*10},function(err,data){
+	articlesModel.find({},"_id title type time", {sort: {'date':-1},limit:page*10,skip:(page-1)*10},function(err,data){
 			if(err){
 				console.log(err);
-				send502(res);
+				res.write('false');
+				res.end();
 			}else{
 				articlesData=data;
-				res.writeHead(200,{"content-type":"text/html"});
-				var html=jade.renderFile('../jade/index.jade',{'DATA':DATA,'data':articlesData,'count':articlesCount,'page':page,'cookie':cookie});
 				console.log("数据库中的数据数量："+count);
-				res.write(html);
+				res.write(JSON.stringify({'DATA':DATA,'data':articlesData,'count':articlesCount,'page':page,'cookie':cookie}));
 				res.end();
 			}
 		});
@@ -85,30 +86,21 @@ function blog(req,res){
 		articlesModel.findOne({_id:id},"_id title type time content",function(err,data){
 			if(err){
 				console.log(err);
-				res.writeHead(502,{"content-type":"text/html"});
-				res,write("502 服务器出错！");
+				res.write('false');
 				res.end();
 			}else{
 				console.log("数据库中查询了数据："+data);
 				if(data)
-				{	res.writeHead(200,{"content-type":"text/html"});
-					var html=jade.renderFile('../jade/blog.jade',{'data':data,'DATA':DATA,'cookie':cookie});
-					res.write(html);
+				{	
+					res.write(JSON.stringify({'data':data,'DATA':DATA,'cookie':cookie}));
 					res.end();
 				}
 				else{
-					send404(res);
+					res.write('false');
+					res.end();
 				}
 			}
 		});
-}
-/*登陆*/
-
-function admin(req,res){
-	res.writeHead(200,{"content-type":"text/html"});
-	var html=jade.renderFile('../jade/admin.jade');
-	res.write(html);
-	res.end();
 }
 
 function login(req,res){
@@ -122,15 +114,18 @@ function login(req,res){
 			loginsModel.find(post,"-_id username password time",function(err,data){
 				if(err){
 					console.log('loginsModel find ERROR:'+err);
+					res.write("<script>window.location='/admin'</script>");
 				}
 				if(data.length==0){
 					console.log("登陆失败！");
-					res.write("<script>window.location='/admin'</script>");
+					res.write("false");
+					res.end();
 				}
 				else{
 					console.log("登陆成功！");
 					res.setHeader('Set-Cookie',"username="+data[0].username+";Max-Age=3600");
-					res.write("<script>window.location='/index'</script>");
+					res.write("true");
+					res.end();
 				}
 			})
 		}else{
@@ -143,29 +138,19 @@ function login(req,res){
 /*发博客*/
 function xiugai(req,res){
 	if(!checkCookie(req)){
-		send404(res);
+		res.write('false');
+		res.end();
 	}
 	else{
-	res.writeHead(200,{"content-type":"text/html"});
 		var _id=$get(req)['_id'];
 		articlesModel.findById(_id,function(err,data){
-			var html=jade.renderFile('../jade/xiugai.jade',{'data':data});
-			res.write(html);
+			data.content=data.content.replace(/<br>/g,'\r\n');
+			res.write(JSON.stringify({'data':data}));
 			res.end();
 		})
 	}
 }
-function fabiao(req,res){
-	if(!checkCookie(req)){
-		send404(res);
-	}
-	else{
-	res.writeHead(200,{"content-type":"text/html"});
-	var html=jade.renderFile('../jade/fabiao.jade');
-	res.write(html);
-	res.end();
-	}
-}
+
 function add(req,res){
 	if(!checkCookie(req)){
 		send404(res);
@@ -185,11 +170,12 @@ function add(req,res){
 		fabiao.save(function(err){
 			if(err){
 				console.log("update ERROR:"+err);
-				res.write("<script>alert('操作失败，请重试！');window.history.back(-1);</script>");
+				res.write('false');
 				res.end();
 			}else{
 				huancun();
-				res.write("<script>alert('操作成功！');window.location='/index'</script>");
+				res.write('true');
+				res.end();
 			}
 		});
 
@@ -211,16 +197,17 @@ function update(req,res){
 		var d = new Date();
 		post['time']=d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()+" "+d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
 		post['date']=d.getTime();
-		post['content']=post['content'].replace(/\r\n/g,'<br>');
+		post['content']=post['content'].replace(/\n/g,'<br>');
 		var update={$set:post};
 		articlesModel.update({'_id':_id},update,function(err){
 			if(err){
 				console.log("update ERROR:"+err);
-				res.write("<script>alert('修改失败，请重试！');window.history.back(-1);</script>");
+				res.write('false');
 				res.end();
 			}else{
 				huancun();
-				res.write("<script>alert('修改成功！');window.location='/index'</script>");
+				res.write('true');
+				res.end();
 			}
 		});
 	});
@@ -237,11 +224,12 @@ function remove(req,res){
 	articlesModel.remove({'_id':_id},function(err){
 		if(err){
 			console.log("update ERROR:"+err);
-			res.write("<script>alert('删除失败，请重试！');window.history.back(-1);</script>");
+			res.write('false');
 			res.end();
 		}else{
 			huancun();
-			res.write("<script>alert('删除成功！');window.location='/index'</script>");
+			res.write('true');
+			res.end();
 		}
 	});
 	}
@@ -265,13 +253,12 @@ articlesModel.count({'type':type},function(err,count){
 	articlesModel.find({'type':type},"_id title type time content", {sort: {'date':-1},limit:page*10,skip:(page-1)*10},function(err,data){
 			if(err){
 				console.log(err);
-				send502(res);
+				res.write('false');
+				res.end();
 			}else{
 				articlesData=data;
-				res.writeHead(200,{"content-type":"text/html"});
-				var html=jade.renderFile('../jade/type.jade',{'DATA':DATA,'data':articlesData,'count':articlesCount,'page':page,'cookie':cookie,'type':type});
 				console.log("数据库中的数据数量："+count);
-				res.write(html);
+				res.write(JSON.stringify({'DATA':DATA,'data':articlesData,'count':articlesCount,'page':page,'cookie':cookie,'type':type}));
 				res.end();
 			}
 		});
@@ -283,16 +270,14 @@ function unlogin(req,res){
 		send404(res);
 	}else{
 		res.setHeader('Set-Cookie',"username="+cookie.username+";Max-Age=0");
-		res.write('<script>alert("已退出登录！");window.location="/index"</script>');
+		res.write('true');
 		res.end();
 	}
 }
 exports.index=index;
 exports.blog=blog;
-exports.admin=admin;
 exports.login=login;
 exports.unlogin=unlogin;
-exports.fabiao=fabiao;
 exports.xiugai=xiugai;
 exports.update=update;
 exports.add=add;
